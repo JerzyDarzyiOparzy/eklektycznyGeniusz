@@ -1,0 +1,110 @@
+# Rappers in the corpus. The selection criteria are public (shown on the site, in Polish).
+criteria:
+  - Co najmniej 2 płyty solowe (albo 1 płyta, jeśli raper jest kluczowy dla epoki) i co najmniej 8 000 słów we własnych zwrotkach.
+  - Rozpiętość epok od lat 90. do dziś; żadna dekada nie przekracza 40% korpusu.
+  - Różne style i regiony, nie tylko najpopularniejsi.
+  - Liczymy tylko płyty studyjne (bez mixtape'ów, remiksów, składanek i wersji live), chyba że płyta jest oznaczona inaczej.
+
+# genius_id is filled in by `rapdna resolve`.
+# aliases: other names of the rapper in Genius section headers (e.g. „Bałagane”).
+# albums: albums to fetch (names as on Genius, see `rapdna albums "<rapper>"`); empty = not fetched yet.
+# excluded: fetched, but below the selection criteria (the value says why); the songs are left out of the analysis.
+# exclude: song titles from these albums that are not counted (live versions, musicals, film transcripts).
+artists:
+  - name: Quebonafide
+    aliases: ["Quebo", "Kuba Grabowski"]
+    genius_id: 40889
+    era: 2010s
+    albums: ["Eklektyka", "Ezoteryka", "Egzotyka", "ROMANTIC PSYCHO", "PÓŁNOC / POŁUDNIE"]
+    # transcript of the musical (dialogue, stage directions and stage versions of the album songs)
+    exclude: ["QUEBONAFIDE AKT I - Północ Południe (Musical)"]
+  - name: Taco Hemingway
+    aliases: ["Taco", "Filip Szcześniak"]
+    genius_id: 114783
+    era: 2010s
+    albums: ["Marmur", "Café Belga", "Jarmark", "Europa", "1-800-OŚWIECENIE", "LATARNIE WSZĘDZIE DAWNO ZGASŁY"]
+  - name: Kaz Bałagane
+    aliases: ["Bałagane", "Kaz", "Bedogie", "Kaz Bałagan", "Kaz Bałgane"]
+    genius_id: 214617
+    era: 2010s
+    albums: ["NARKOPOP", "Chleb i Miód", "A nie mówiłem?", "Polska Gotówkowa", "Książę Nieporządek", "Radio Gruz"]
+  - name: Eripe
+    genius_id: 32607
+    era: 2010s
+    albums: ["Opium", "Płyta Roku", "Chamskie Rzeczy", "Nienawiść w rytmie disco", "Podium"]
+  - name: Oxon
+    genius_id: 70007
+    era: 2020s
+    albums: ["Ktoś ZupełNiezwykły", "Supermoce", "Z tym będzie Ci jeszcze łatwiej", "Lifter"]
+  - name: Żabson
+    genius_id: 84456
+    era: 2010s
+    albums: ["To ziomal", "Internaziomal", "Ostatni Ziomal", "HOLLYWOOD SMILE", "amfisbena"]
+  - name: Białas
+    genius_id: 31159
+    era: 2010s
+    albums: ["Rehab", "Głowa Rodziny LP", "Diamentowy Las", "POLON", "POLONN", "NEWCOMER", "HYPER2000"]
+  # 1990s, 2000s and 2020s, chosen by the criteria above.
+  - name: Liroy
+    genius_id: 189349
+    era: 1990s
+    albums: ["Albóóm", "L", "Dzień Szaka-L’a - Bafangoo cz.2"]
+  - name: Slums Attack
+    aliases: ["Peja", "Slums Attack"]
+    genius_id: 68063
+    era: 2000s
+    albums: ["Zwykła codzienność", "I Nie Zmienia Się Nic...", "Na legalu?", "Najlepszą obroną jest atak", "Reedukacja"]
+  - name: O.S.T.R.
+    aliases: ["OSTR", "Ostry", "O.S.T.R"]
+    genius_id: 58540
+    era: 2000s
+    albums: ["Masz to jak w banku", "Tabasko", "7", "HollyŁódź", "Ja tu tylko sprzątam"]
+  - name: Łona
+    aliases: ["Łona"]
+    genius_id: 56075
+    era: 2000s
+    albums: ["Koniec żartów", "Nic dziwnego", "Absurd i nonsens"]
+  - name: Eldo
+    genius_id: 28888
+    era: 2000s
+    albums: ["Eternia", "Człowiek, który chciał ukraść alfabet", "27", "Zapiski z 1001 nocy"]
+  - name: Pezet
+    genius_id: 36890
+    era: 2000s
+    albums: ["Muzyka Klasyczna", "Muzyka Poważna", "Muzyka Rozrywkowa"]
+  - name: Tede
+    aliases: ["TDF"]
+    genius_id: 24193
+    era: 2000s
+    albums: ["S.P.O.R.T.", "Notes", "Esende Mylffon", "Ścieżka Dźwiękowa"]
+  - name: Fisz
+    genius_id: 72886
+    era: 2000s
+    excluded: "mniej niż 8000 słów we własnych zwrotkach (6756 z dwóch płyt na Geniusie)"
+    albums: ["Polepione dźwięki", "Na wylot"]
+  - name: Abradab
+    genius_id: 71005
+    era: 2000s
+    albums: ["Czerwony album", "Emisja spalin", "Abradabing"]
+  - name: Ten Typ Mes
+    aliases: ["Mes", "TTM"]
+    genius_id: 19857
+    era: 2000s
+    albums: ["Alkopoligamia: Zapiski Typa", "Zamach na przeciętność", "Kandydaci na szaleńców"]
+  - name: Mata
+    genius_id: 51868
+    era: 2020s
+    albums: ["100 dni do matury", "Młody Matczak", "#MATA2040"]
+  # 2010s and 2020s, different regions.
+  - name: Kękę
+    genius_id: 60686
+    era: 2010s
+    albums: ["Takie Rzeczy", "Nowe Rzeczy", "Trzecie Rzeczy"]
+  - name: Szpaku
+    genius_id: 1089238
+    era: 2020s
+    albums: ["Różowa Pantera", "UZUMAKI FORMA OSTATECZNA", "Dom Dla Zmyślonych Przyjaciół Pana Mateusza"]
+  - name: Sobel
+    genius_id: 25811
+    era: 2020s
+    albums: ["PUŁAPKA NA MOTYLE", "NAPISZ JAK BĘDZIESZ", "W ZWIĄZKU Z MUZYKĄ"]

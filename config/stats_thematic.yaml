@@ -1,0 +1,21 @@
+# Definitions of the thematic statistics. Emotions and mode of speech are postponed.
+perspective:
+  name: Perspective
+  measures: Share of 1st person singular („ja”), 1st person plural („my”), 2nd person („ty / wy”) and 3rd person plural („oni”) forms among personal pronouns and verbs with a marked person (spaCy). The rest is 3rd person singular.
+  does_not_measure: Who really speaks in a line (quotes and dialogue count as the rapper's narration).
+  validation: person and number correct in 37/40 random cases
+topics:
+  name: Topics
+  measures: Verse fragments (up to 4 lines) turned into meaning vectors (mmlw-roberta-large) and clustered with BERTopic; share of the rapper's fragments in every topic. Topic names given by hand after reviewing examples.
+  does_not_measure: Fragments without a clear topic (56% fall into noise) or topics outside the 18 named clusters.
+  validation: 39/54 random fragments fit their topic name (72%); 6 incoherent clusters left out
+references:
+  name: References
+  measures: Proper names (people, places, brands and organisations, from spaCy NER) and names of other rappers in the corpus, per 1000 words.
+  does_not_measure: References without a proper name („ten z Tańca z gwiazdami”); the reference kind is approximate.
+  validation: precision 87% (68/78 in a random hundred, after filters)
+domains:
+  name: Vocabulary domains
+  measures: Words from hand-written lexicons of the five domains in the plan (sport, war, food, religion, games), per 1000 words.
+  does_not_measure: Metaphors (the word „wojna” counts the same in a description of a war and figuratively); words outside the lexicons.
+  validation: lexicons are explicit in config/domains.yaml, with no ambiguous words; accuracy in context not measured

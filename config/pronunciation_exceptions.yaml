@@ -1,0 +1,14 @@
+# Pronunciation (IPA, espeak notation) for words that the dictionary and espeak-ng read wrongly.
+# espeak reads one-letter prepositions as letter names („w” → „wy”), which added a false syllable.
+w: v
+z: z
+k: k
+# Nicknames and proper names are added here when validation shows an error.
+# English words with Polish pronunciation or inflection that eSpeak read wrongly (end-rhyme errors in the gold set)
+groupie: ɡrˈupi
+jointów: dʒˈɔjntuf
+jointy: dʒˈɔjntɨ
+freestyle: frˈistajl
+freestylu: frˈistajlu
+freestyla: frˈistajla
+whisky: wˈiski

@@ -1,0 +1,220 @@
+# Feature definitions: what each statistic measures, what it does not measure, its unit and its validation.
+# dna: true = the statistic enters the DNA vector (comparisons, similarity, scene map).
+# Computed but kept out of comparisons (too weak without recordings): parallelisms, enjambments, assonance and
+# consonance chains, onomatopoeia, consonance rhymes, in-word rhymes, raw internal rhymes, shifted stress.
+# validation: result on the gold set (data/validation/gold) unless stated otherwise. Rater: a language model, checked
+# by the project author on samples. If human labels are added (`*_ty.csv`), `rapdna calibrate` recomputes thresholds
+# and kappa.
+
+vocabulary:
+  name: Vocabulary
+  unit: unique lemmas per 8,000 words
+  measures: How many different words (in their base form, „dom / domu / domem” = 1) appear in 8,000 words of the rapper. Mean over 20 random orderings of the songs.
+  does_not_measure: Rarity or sophistication of the words; nicknames, names and English words count like any other word.
+  dna: true
+  validation: mechanical count (spaCy lemmas); lemmas not checked by hand
+mattr:
+  name: Lexical variety (MATTR)
+  unit: share of unique lemmas in a 500-word window
+  measures: Mean share of different words in every consecutive stretch of 500 words; robust to the size of a catalogue, used to compare albums.
+  does_not_measure: The richness of the whole catalogue.
+  dna: false
+  validation: mechanical count
+rhyme_density:
+  name: Rhyme density
+  unit: syllables per word
+  measures: For every word, the longest shared vowel sequence (counted back from the end of the word) with one of the 15 previous words; mean over words. The Raplyzer method (Malmi et al. 2016).
+  does_not_measure: Whether a rhyme is intended; it counts chance vowel matches too, so differences between rappers matter, not the value itself.
+  dna: true
+  validation: method from the literature, not checked by hand
+rhyme_length:
+  name: Rhyme length
+  unit: syllables
+  measures: Mean length of end rhymes in syllables. An end rhyme is the longest shared vowel tail of two lines (up to 3 lines apart) that covers the stress of the last word on both sides; it can run across words („polskie tango / grząskie bagno” = 4). Close vowels count as one (y=i, ę=e, ą=o). Fixed rules, not learned from the lyrics.
+  does_not_measure: Consonant agreement (see exact rhymes) or rhymes the rule misses.
+  dna: true
+  validation: last syllable of a line against reference rhyme annotations (16 songs, 724 lines); precision 97.8%, recall 96.4%
+three_plus_share:
+  name: Multisyllabic rhymes
+  unit: share of end rhymes with ≥ 3 syllables
+  measures: How often the rapper rhymes on three syllables or more.
+  does_not_measure: Internal rhymes.
+  dna: true
+  validation: as rhyme length
+rhymed_lines_share:
+  name: Rhymed lines
+  unit: share of lines
+  measures: Share of lines whose ending rhymes with a nearby line (up to three lines before or after).
+  does_not_measure: Rhymes further than three lines apart.
+  dna: true
+  validation: as rhyme length
+internal_rhymes_100:
+  name: Internal rhymes
+  unit: rhyming word pairs per 100 lines
+  measures: Word pairs whose endings rhyme (from the stress) inside a line, or between the inside and the end of neighbouring lines.
+  does_not_measure: Whether a rhyme is intended.
+  dna: false
+  validation: too weak, kept out of comparisons; random lines from different songs have 61% as many such pairs as neighbouring lines, so these are mostly chance
+exact_share:
+  name: Exact rhymes
+  unit: share of end rhymes
+  measures: Share of end rhymes in which the consonants of the rhyming tail match as well as the vowels; the rest are assonant. Long rhymes are less often identical throughout, so this number drops with rhyme length.
+  does_not_measure: Rhyme quality; assonance is the norm in Polish rap, not a weakness.
+  dna: true
+  validation: follows from the transcription; rhyme kind agreed with the rater in 86% of true rhymes (29 rhymes, gold set R)
+alliterations_100:
+  name: Alliteration
+  unit: lines with alliteration per 100 lines
+  measures: Lines in which at least three consecutive content words start with the same consonant (prepositions and conjunctions skipped).
+  does_not_measure: Alliteration spread over several lines.
+  dna: true
+  validation: precision 5/7, recall 5/5 (500 lines; small sample)
+anaphoras_100:
+  name: Anaphora
+  unit: per 100 lines
+  measures: Pairs of neighbouring lines that start with the same word (not „i / a / bo / że” or prepositions, unless two words agree).
+  does_not_measure: Repeated identical lines and echoes (a repeat, not a figure).
+  dna: true
+  validation: precision 89%, recall 67% (500 lines)
+epiphoras_100:
+  name: Epiphora
+  unit: per 100 lines
+  measures: Pairs of neighbouring lines that end with the same word.
+  does_not_measure: Repeated identical lines, echoes and ad-libs.
+  dna: true
+  validation: precision 92%, recall 92% (500 lines)
+phrase_repetitions_100:
+  name: Phrase repetition
+  unit: lines with a repetition per 100 lines
+  measures: Lines in which a phrase of at least two different words repeats within the line or comes back from the previous line (outside a shared start or end, which are anaphora and epiphora).
+  does_not_measure: Repeats of single words or whole lines.
+  dna: true
+  validation: precision 18/18, recall 86% (500 lines; the rule was tuned on this set)
+parallelisms_100:
+  name: Syntactic parallelism
+  unit: per 100 lines
+  measures: Neighbouring lines with a similar sequence of parts of speech.
+  does_not_measure: n/a
+  dna: false
+  validation: precision 44%, recall 44%; too weak, kept out of comparisons
+enjambments_100:
+  name: Enjambment
+  unit: per 100 lines
+  measures: Lines ending with a preposition or a conjunction, so the sentence runs on into the next line.
+  does_not_measure: Most enjambments (recall 1/8); a dependency parser on lyrics without punctuation had precision 2/64.
+  dna: false
+  validation: too weak, kept out of comparisons
+onomatopoeias_100:
+  name: Onomatopoeia
+  unit: per 100 lines
+  measures: Sound-imitating words from a list, and repeated short words that are in no dictionary.
+  does_not_measure: n/a
+  dna: false
+  validation: too few examples in the gold set (1), kept out of comparisons
+assonance_chains_100:
+  name: Assonance chains
+  unit: per 100 lines
+  measures: At least three consecutive content words with the same stressed vowel.
+  does_not_measure: n/a
+  dna: false
+  validation: 0/53 correct; in Polish this is mostly chance, kept out of comparisons
+consonance_chains_100:
+  name: Consonance chains
+  unit: per 100 lines
+  measures: At least three consecutive content words with the same consonants after the stressed vowel.
+  does_not_measure: n/a
+  dna: false
+  validation: too few examples in the gold set (1), kept out of comparisons
+syllables_per_line:
+  name: Syllables per line
+  unit: syllables
+  measures: Mean number of syllables in a line (from the phonetic transcription).
+  does_not_measure: Delivery speed; the line breaks come from the Genius transcription and are not always consistent.
+  dna: true
+  validation: syllable counts matched a manual count in 24/24 Polish lines; English lines are read with English pronunciation
+word_length:
+  name: Word length
+  unit: syllables per content word
+  measures: Mean number of syllables in content words (no prepositions, conjunctions or pronouns).
+  does_not_measure: How difficult the words are.
+  dna: true
+  validation: syllabification as above (24/24 lines)
+english_share:
+  name: English words
+  unit: share of words
+  measures: Share of words recognised as English (missing from the Polish dictionary and frequent in English, or a whole line in English).
+  does_not_measure: English words with Polish spelling („protein”) or Polonised forms („followuję”).
+  dna: true
+  validation: precision 40/40 on random words marked as English; recall not measured
+inword_rhymes_100:
+  name: In-word rhymes
+  format: num
+  digits: 1
+  unit: per 100 lines
+  measures: Multisyllabic (≥ 3 syllables) vowel repeats with stresses facing each other that start or end inside words; a rhyme „on the vowels”, independent of word boundaries.
+  does_not_measure: Rhymes shorter than 3 syllables.
+  dna: false
+  validation: too weak, kept out of comparisons; precision 40% (100 pairs of gold set R); random line pairs give 64% of what neighbouring ones do
+rich_share:
+  name: Rich rhymes
+  format: pct
+  digits: 0
+  unit: share of end rhymes
+  measures: Rhymes in which the consonant right before the stressed vowel matches too („rama / brama”).
+  does_not_measure: Rhyme quality.
+  dna: false
+  validation: mechanical count from the pronunciation, not checked separately; kept out of comparisons
+grammatical_share:
+  name: Grammatical rhymes
+  format: pct
+  digits: 0
+  unit: share of end rhymes
+  measures: Rhymes on a shared inflectional ending or suffix (list in config/grammatical_endings.yaml), e.g. „zrobiłem / kupiłem”, with the same part of speech.
+  does_not_measure: Grammatical rhymes on endings missing from the list.
+  dna: false
+  validation: rule based on the ending list, not checked separately; kept out of comparisons
+shifted_stress_share:
+  name: Shifted stress (candidates)
+  format: pct
+  digits: 0
+  unit: share of end rhymes
+  measures: Rhymes that only work with the stress somewhere other than the norm, e.g. „mocno / co” with the stress on „-no”.
+  does_not_measure: Whether the rapper really stresses it that way (only a recording shows that); some are stress errors in the pronunciation dictionary.
+  dna: false
+  validation: candidates, not checked against recordings; kept out of comparisons
+internal_rhymes_excess:
+  name: Internal rhymes above chance
+  format: num
+  digits: 1
+  unit: percentage points (per 100 pairs of neighbouring lines)
+  measures: How much more often than by chance the rapper's neighbouring lines share an internal rhyme (at least one side inside a line). Chance = the same rules on random pairs of the rapper's own lines from different songs, so vocabulary and style are the same.
+  does_not_measure: Rhymes within a single line, or single rhymes (it is a measure over the whole catalogue, error about ±1.3 points).
+  dna: true
+  validation: chance control built into the measure; the internal rhymes themselves have precision 77% (cross-validated, gold set R)
+scheme_aabb:
+  name: AABB scheme
+  format: pct
+  digits: 0
+  unit: share of quatrains
+  measures: Share of quatrains (counted from the start of a verse) in which consecutive pairs of lines rhyme (1–2, 3–4).
+  does_not_measure: Schemes shifted against the start of the verse or longer than 4 lines; depends on the Genius line breaks.
+  dna: false
+  validation: quatrains of random lines show this scheme in less than 1%; computed, classification not checked by hand, kept out of comparisons
+scheme_abab:
+  name: ABAB scheme
+  format: pct
+  digits: 0
+  unit: share of quatrains
+  measures: Share of quatrains (counted from the start of a verse) in which every other line rhymes (1–3, 2–4).
+  does_not_measure: Schemes shifted against the start of the verse or longer than 4 lines; depends on the Genius line breaks.
+  dna: false
+  validation: quatrains of random lines show this scheme in less than 1%; computed, classification not checked by hand, kept out of comparisons
+scheme_monorhyme:
+  name: Monorhyme
+  format: pct
+  digits: 0
+  unit: share of quatrains
+  measures: Share of quatrains (counted from the start of a verse) in which all four lines share one rhyme.
+  does_not_measure: Schemes shifted against the start of the verse or longer than 4 lines; depends on the Genius line breaks.
+  dna: false
+  validation: quatrains of random lines show this scheme in less than 1%; computed, classification not checked by hand, kept out of comparisons

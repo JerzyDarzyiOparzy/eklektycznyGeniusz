@@ -1,0 +1,26 @@
+# Vulgar words for the feature „vulgarisms per 1000 words” (stats/surface.py). Regular expressions matched against
+# the whole word form (lower case). Stems catch inflection and derivatives („zajebisty”, „spierdolić”, „chujowy”).
+# The list is public and gets corrected after reviewing hits (the 60 most frequent forms were reviewed).
+polish:
+  - ".*kurw.*"
+  - ".*(?<!ma)(?<!łu)chuj.*"  # not „wymachuje”, „przesłuchuje”
+  - "huj(a|e|em|owi|u|owy|owa|owe|ki)?"  # the spelling „huj”; not „przesłuchuje”
+  - ".*jeb.*"
+  - ".*pierdol.*"
+  - ".*pizd.*"
+  - "cip(a|y|ie|ę|ą|ek|ki|ka|ko|ach|om)?"
+  - "kutas.*"
+  - "fiut.*"
+  - "szmat(a|y|ie|ę|ą|om|ach|ami)?"
+  - "(o|na|za|wy|ze|po|prze|roz)?sr(a|ać|am|asz|a|amy|acie|ają|ał|ała|ali|ało|aj|ajcie|anie|aka)"
+  - "gówn.*"
+  - "dup(a|y|ie|ę|ą|om|ach|ami|ek|ka|ki|sko|eczk.*)?"
+  - "cwel.*"
+english:
+  - ".*fuck.*"
+  - "shit.*"
+  - "bitch.*"
+  - "motherfuck.*"
+  - "ass(hole)?"
+  - "dick.*"
+  - "pussy"

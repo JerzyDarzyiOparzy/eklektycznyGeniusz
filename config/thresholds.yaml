@@ -1,0 +1,6 @@
+# Thresholds of the Hirjee & Brown rhyme model (log-odds score), calibrated by `rapdna calibrate` on the gold set
+# (threshold with the best F1). A manual change is overwritten by the next calibration.
+tau_end: 0.6
+tau_internal: 1.7
+calibrated: true
+calibrated_on: 'gold set, rater: model'

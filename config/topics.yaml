@@ -1,0 +1,46 @@
+# Names of the BERTopic clusters (shown on the site, in Polish). Named after reviewing keywords and examples
+# (20-rapper corpus). Clusters marked „(niespójny)” (incoherent) are hidden on the site: they mix random
+# fragments, ad-libs, a single song or repeated choruses. Numbers refer to data/topics/topics.json
+# (seed 2026, 13 687 fragments).
+0: Polska i miasto
+1: Pieniądze i zarabianie
+2: Rodzina i wychowanie
+3: Zaczepki i pogarda
+4: Moda i ubrania
+5: Wolność i sens życia
+6: Polski rap i scena
+7: Pustka, presja i bezsenność
+8: Samochody
+9: (niespójny) jeden utwór i okrzyki
+10: Palenie zioła
+11: Marzenia i los
+12: Prawdziwy hip-hop
+13: Czas i przemijanie
+14: Bóg, grzech i wiara
+15: (niespójny) mieszany
+16: Człowiek, strach i pozory
+17: Muzyka, bit i rytm
+18: Wspomnienia
+19: Płyty i nagrywanie
+20: (niespójny) ad-liby i okrzyki
+21: Pisanie i ślad po sobie
+22: Rozłąka i telefon
+23: Alkohol i picie
+24: Kariera i zarobki
+25: Krytyka sceny i hejt
+26: Piłka i gra
+27: (niespójny) powtarzane refreny
+28: Nocne miasto
+29: Wódka i bar
+30: (niespójny) mieszany
+31: (niespójny) mieszany
+32: (niespójny) mieszany
+33: (niespójny) mieszany
+34: (niespójny) mieszany
+35: (niespójny) mieszany
+36: (niespójny) powtarzane refreny
+37: (niespójny) mieszany
+38: Dziewczyny i podryw
+39: (niespójny) mieszany
+40: (niespójny) mieszany
+41: (niespójny) jeden utwór

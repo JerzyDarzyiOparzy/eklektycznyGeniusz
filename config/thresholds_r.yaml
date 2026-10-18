@@ -1,0 +1,6 @@
+# Thresholds of the rule-based ruler (variant R), calibrated by `rapdna calibrate-r` on gold set R (best F1).
+clausal: 4.2
+consonance: .inf
+in_word: 7.9
+clausal_end: 1.0
+calibrated: true

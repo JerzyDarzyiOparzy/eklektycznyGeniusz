@@ -1,0 +1,134 @@
+description: Cue weights of the rhyme probability experiment (experiments/probability.py),
+  fitted to the reference rhyme annotations (validate/train_probability.py). Generated,
+  do not edit by hand.
+data: 16 songs, 34 sections, 10734 cells
+threshold: 0.45
+weights:
+  consonants: 0.401
+  end: 0.752
+  end_echo: 0.263
+  from_end_1_1: -0.548
+  from_end_2_3: -1.866
+  from_end_4_6: -2.681
+  from_end_7_99: -2.85
+  function_words: -0.646
+  kind_end_plus_short: 0.907
+  kind_foot: -0.616
+  kind_join: 0.302
+  kind_rest: -1.129
+  kind_start: 0.42
+  line_pair: 1.568
+  parallel: 0.64
+  partners: -0.011
+  run: 0.649
+  same_line: 0.365
+  stressed: 0.359
+  two_syllables: 0.1
+  intercept: 0.632
+validation_leave_one_song_out:
+  threshold: 0.45
+  syllables_P: 72.7
+  syllables_R: 78.9
+  end_P: 96.8
+  end_R: 94.7
+  internal_P: 60.7
+  internal_R: 69.7
+  words_P: 67.5
+  words_R: 78.8
+  pairs_P: 80.0
+  pairs_R: 56.3
+  syllables_F1: 75.7
+feet_for_comparison:
+  syllables_P: 46.7
+  syllables_R: 94.7
+  end_P: 96.4
+  end_R: 95.9
+  internal_P: 35.7
+  internal_R: 93.9
+  words_P: 44.7
+  words_R: 94.8
+  pairs_P: 83.8
+  pairs_R: 39.8
+  syllables_F1: 62.6
+threshold_with_audio: 0.45
+weights_with_audio:
+  beat_4: 0.335
+  consonants: 0.394
+  end: 0.796
+  end_echo: 0.256
+  from_end_1_1: -0.54
+  from_end_2_3: -1.809
+  from_end_4_6: -2.556
+  from_end_7_99: -2.714
+  function_words: -0.63
+  kind_end_plus_short: 0.953
+  kind_foot: -0.584
+  kind_join: 0.314
+  kind_rest: -1.089
+  kind_start: 0.442
+  line_pair: 1.568
+  meter_known: -0.61
+  meter_partner: 0.11
+  on_beat: 0.042
+  parallel: 0.615
+  partners: -0.036
+  run: 0.642
+  same_line: 0.369
+  stressed: 0.375
+  two_syllables: 0.155
+  intercept: 0.954
+validation_with_audio:
+  threshold: 0.45
+  syllables_P: 72.7
+  syllables_R: 79.1
+  end_P: 96.9
+  end_R: 95.0
+  internal_P: 60.7
+  internal_R: 69.9
+  words_P: 67.4
+  words_R: 79.0
+  pairs_P: 79.8
+  pairs_R: 56.2
+  syllables_F1: 75.8
+validation_same_songs_without_audio:
+  threshold: 0.45
+  syllables_P: 72.7
+  syllables_R: 78.9
+  end_P: 96.8
+  end_R: 94.7
+  internal_P: 60.7
+  internal_R: 69.7
+  words_P: 67.5
+  words_R: 78.8
+  pairs_P: 80.0
+  pairs_R: 56.3
+  syllables_F1: 75.7
+feet_same_songs:
+  syllables_P: 46.7
+  syllables_R: 94.7
+  end_P: 96.4
+  end_R: 95.9
+  internal_P: 35.7
+  internal_R: 93.9
+  words_P: 44.7
+  words_R: 94.8
+  pairs_P: 83.8
+  pairs_R: 39.8
+  syllables_F1: 62.6
+songs_with_audio:
+- Bisz - Wilk Chodnikowy
+- Eripe & Quebonafide - Jeruzalem
+- Eripe - Jestem Rozczarowaniem
+- Eripe - Mogę Wypierdalać (100 Linijek Szaleństwa 3)
+- Golin - Żaden Mesjasz
+- Gruby Mielzky - Nowy Klasyk
+- Hase & Eripe - Co Cię Boli?
+- LaikIke1 - Bajera
+- Opał - Odpierdalala Mi
+- Oxon & Paweł Bokun - Jestem
+- Pores & Nullo & Szad - Dla Mnie Masz Stajla
+- Quebonafide & Smarki Smark - COJESTMAŁPY
+- Taco Hemingway - 6 Zer
+- Tepesz & Okoń - Biszkopcik
+- Zeus - Hipotermia
+- Łona - Znowu Nic

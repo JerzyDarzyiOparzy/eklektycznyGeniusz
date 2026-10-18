@@ -1,0 +1,16 @@
+# Inflectional endings and suffixes that make a grammatical rhyme (docs/en/glossary.md): both words have the
+# same part of speech and end the same way, and the rhyme does not reach beyond that ending („zrobiłem / kupiłem”,
+# „czekanie / granie”). Spelling, lower case. Listed from Polish grammar, open to additions.
+endings: [
+  # past tense
+  iłem, iłam, ałem, ałam, ełem, ełam, yłem, yłam, iłeś, ałeś, ełeś, iłaś, ałaś, iliśmy, aliśmy, ili, ali, eli, yli,
+  iła, ała, eła, yła, iło, ało, eło,
+  # infinitive and finite forms
+  ować, ywać, iwać, ać, ić, yć, eć, uję, ujesz, uje, ują, ujemy, ując, ając, ując, ąc, ają, eją, imy, amy, ymy,
+  # verbal and abstract nouns
+  anie, enie, ania, enia, aniu, eniu, aniem, eniem, ość, ości, ością,
+  # case endings
+  ami, ach, owie, ów, om, owi, ego, emu, ymi, imi, ych, ich,
+  # adjectives and adverbs
+  owy, owa, owe, owych, owej, owego, ski, ska, skie, sko, cki, cka, ckie, nie,
+]

@@ -1,0 +1,69 @@
+[project]
+name = "rapdna"
+version = "0.1.0"
+description = "Measurable style DNA of Polish rap: rhymes, vocabulary, figures and themes with explicit validation"
+requires-python = ">=3.12,<3.13"
+license = "MIT"
+authors = [{ name = "JerzyDarzyiOparzy" }]
+readme = "README.md"
+dependencies = [
+    "requests>=2.32",
+    "beautifulsoup4>=4.12",
+    "python-dotenv>=1.0",
+    "pandas>=2.2",
+    "pyarrow>=17",
+    "pyyaml>=6.0",
+    "typer>=0.12",
+    "spacy>=3.8,<4",
+    "num2words>=0.5.13",
+    "wordfreq>=3.1",
+    "pl-core-news-lg",
+    "panphon>=0.22.2",
+    "scikit-learn>=1.9.1",
+    "pillow>=11",
+]
+
+[project.optional-dependencies]
+# thematic layer: embeddings and BERTopic (heavy: torch)
+topics = [
+    "torch>=2.5",
+    "sentence-transformers>=3.0",
+    "bertopic>=0.16",
+]
+# audio pilot: vocal separation, beat tracking, forced alignment, YouTube download
+audio = [
+    "beat-this>=1.1.0",
+    "demucs>=4.0.1",
+    "torch>=2.5",
+    "torchaudio>=2.11.0",
+    "yt-dlp>=2026.8.19",
+]
+
+[project.urls]
+Repository = "https://github.com/JerzyDarzyiOparzy/eklektycznyGeniusz"
+
+[project.scripts]
+rapdna = "rapdna.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rapdna"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu126" }]
+torchaudio = [{ index = "pytorch-cu126" }]
+pl-core-news-lg = { url = "https://github.com/explosion/spacy-models/releases/download/pl_core_news_lg-3.8.0/pl_core_news_lg-3.8.0-py3-none-any.whl" }

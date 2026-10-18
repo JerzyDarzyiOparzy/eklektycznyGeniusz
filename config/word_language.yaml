@@ -1,0 +1,55 @@
+# Which language a word is read in (text/phonetics.py). Frequencies: wordfreq, Zipf scale
+# (log10 of occurrences per billion words + 3).
+#
+# Rule A (English word in a Polish line): a word from the Polish dictionary is read in English when
+#   zipf_en ≥ a_min_en, zipf_en > zipf_pl + a_margin and zipf_pl < a_max_pl, unless it is in `always_polish`.
+#   Examples: beat, trap, wanna, hype, fake, track, jeans.
+# Rule B (Polish word in an English line): read in Polish when zipf_en < b_max_en and zipf_pl ≥ b_min_pl.
+#   Examples: jej, że, mnie, żaden, wszyscy.
+# Rule C (word missing from the Polish dictionary): English when zipf_en ≥ c_min_en and English is more frequent
+#   than Polish, Spanish, Italian, French, German and Portuguese. Examples: Steve, Scott, Carell, Avengers, feat,
+#   Silver. Stay Polish: Valentino, Cantona, Agata, Mufasa, Kuban. The word must also have English spelling
+#   (text/phonetics.py, _EN_SPELLING): Toronto, Antoni, Isla stay Polish.
+# Rule H (hybrid): a stem of ≥ 4 letters satisfies rule C (or is a compound of two such words of ≥ 4 letters, each with
+#   zipf_en ≥ h_min_part), has English spelling (except forms with an apostrophe), the whole word has
+#   zipf_pl < h_max_pl and the ending is Polish; the stem is read in English, the ending in Polish, with penultimate
+#   stress. Examples: shotgunem, Punisherem.
+# Context rules within a line (text/phonetics.py, context_english):
+#   D: a word next to an English one, when zipf_en ≥ d_min_en and zipf_en > zipf_pl + 2·a_margin („I'll be back”).
+#   E: a word between two English ones, when zipf_en ≥ e_min_en and zipf_en ≥ zipf_pl („not a player”, but not „z”).
+#   N: in a run of ≥ 2 capitalised words with an English member, the other members are English when
+#      zipf_en ≥ n_min_en and zipf_en ≥ zipf_pl − a_margin, and English beats the languages of rule C
+#      („Frank Castle”, „Silver Surfer”).
+# `always_polish` blocks rules A, C, H and N.
+c_min_en: 2.0
+c_max_pl: 4.5  # C, H, N: the word must not be very frequent in Polish („by”, „my”, „one”)
+d_min_en: 5.0
+e_min_en: 4.0
+n_min_en: 3.0
+h_min_part: 3.5
+h_max_pl: 3.0
+a_min_en: 3.5
+a_margin: 0.5
+a_max_pl: 4.3
+b_max_en: 2.0
+b_min_pl: 3.0
+
+# Polish words and established loanwords with Polish pronunciation that rule A would take for English
+# (reviewed on corpus candidates).
+always_polish: [
+  # ordinary Polish words or forms with the same spelling
+  fury, won, fur, but, pot, role, palm, nor, map, much, car, hart, sale, past, gum, bomb, hindus, police, era, mate,
+  # loanwords read in Polish
+  sort, tank, bus, bar, hit, solo, terror, bolt, kit, pin, idol, patent, gin, limit, standard, grand, drama, tornado,
+  fan, front, memo, via, student, combo, master, agent, planet, gold, bin, toast, fauna, flora, ring, set, cent, lord,
+  soda, mentor, laser, monster, poker, casting, spot, fit, musical, gluten, marketing, extra, sponsor, trans, terminal,
+  piano, orbit, mantra, promo, alter, bonus, tablet, logos, algebra, rugby, cylinder, motor, arena, trauma,
+  cholesterol, pardon, veto, metal, samurai, marker, single, diesel, font, trust, event, catering, loft, inter, casino,
+  manual, level, killer, target, monopoly, predator, legend, dragon, mix, sex, ghetto,
+  # places and institutions with Polish pronunciation
+  amsterdam, bangkok, tokyo, alaska, texas, nevada, havana, delhi, quebec, brisbane, kentucky, indiana, milan,
+  arsenal, everest, lanka, pentagon, holocaust, hamas, nobel, boston, houston, harlem, brooklyn,
+]
+
+# Words always read in English, also when rule A misses them.
+always_english: [hype, flow, shake, beat, drip, freestyle]

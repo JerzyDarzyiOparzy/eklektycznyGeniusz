@@ -1,0 +1,268 @@
+# Features shown in rapper profiles (stats/profile.py). Each feature: Polish label and phrases for the page,
+# the per-song table it comes from, how to format it, its style dimension (docs/en/features.md) and status:
+#   validated: checked against a gold standard or a listening test;
+#   new: checked on a sample (see note), shown with a "new" mark.
+# Features with low rapper-vs-song reliability (anaphora, alliteration, epiphora, self-mentions) are left out on
+# purpose: docs/en/reliability.md.
+# high / low: phrase completing "Najbardziej…" / "Najmniej…" style sentences; unit: shown after the value.
+
+features:
+  rhyme_length:
+    check: "rymy końcowe: trafność 97%, pokrycie 96% wobec ręcznych oznaczeń rymów (724 wersy)"
+    column: rhyme_length
+    source: songs_technical
+    label: Długość rymu końcowego
+    unit: sylaby
+    format: "{:.2f}"
+    dimension: rymy
+    status: validated
+    high: najdłuższe rymy końcowe
+    low: najkrótsze rymy końcowe
+  multisyllabic:
+    check: "jak długość rymu"
+    column: three_plus_share
+    source: songs_technical
+    label: Rymy co najmniej trzysylabowe
+    unit: "% rymów"
+    format: pct
+    dimension: rymy
+    status: validated
+    high: najwięcej rymów wielosylabowych
+    low: najmniej rymów wielosylabowych
+  rhymed_lines:
+    check: "jak długość rymu"
+    column: rhymed_lines_share
+    source: songs_technical
+    label: Wersy zrymowane na końcu
+    unit: "% wersów"
+    format: pct
+    dimension: rymy
+    status: validated
+    high: najwięcej wersów zrymowanych
+    low: najmniej wersów zrymowanych (luźniejsza forma)
+  exact_rhymes:
+    check: "jak długość rymu"
+    column: exact_share
+    source: songs_technical
+    label: Rymy dokładne
+    unit: "% rymów"
+    format: pct
+    dimension: rymy
+    status: validated
+    high: najwięcej rymów dokładnych (zgodne też spółgłoski)
+    low: najmniej rymów dokładnych (częściej asonanse)
+  rhyme_density:
+    check: "metoda z literatury (Raplyzer, Malmi 2015), bez ręcznej kontroli"
+    column: rhyme_density
+    source: songs_technical
+    label: Gęstość rymów
+    unit: sylaby na słowo
+    format: "{:.2f}"
+    dimension: rymy
+    status: validated
+    high: największa gęstość rymów
+    low: najmniejsza gęstość rymów
+  syllables_per_line:
+    check: "wymowa słów: 90% trafnych odczytów (próbka)"
+    column: syllables_per_line
+    source: songs_technical
+    label: Sylaby w wersie
+    unit: sylab
+    format: "{:.1f}"
+    dimension: jezyk
+    status: validated
+    high: najdłuższe wersy
+    low: najkrótsze wersy
+  word_length:
+    check: "jak sylaby w wersie"
+    column: word_length
+    source: songs_technical
+    label: Długość słowa
+    unit: sylaby
+    format: "{:.2f}"
+    dimension: jezyk
+    status: validated
+    high: najdłuższe słowa
+    low: najkrótsze słowa
+  lexical_variety:
+    check: "liczenie mechaniczne (lematy spaCy)"
+    column: mattr_100
+    source: songs_technical
+    label: Różnorodność słów
+    unit: "% różnych słów w oknie 100"
+    format: pct
+    dimension: jezyk
+    status: validated
+    high: najbardziej różnorodne słownictwo
+    low: najmniej różnorodne słownictwo
+  english:
+    check: "język słowa: 90% trafnych (próbka)"
+    column: english_share
+    source: songs_technical
+    label: Wtrącenia angielskie
+    unit: "% słów"
+    format: pct1
+    dimension: jezyk
+    status: validated
+    high: najwięcej wtrąceń angielskich
+    low: najmniej wtrąceń angielskich
+  phrase_repetition:
+    check: "precyzja 89–100% na 500 wersach"
+    column: phrase_repetitions_100
+    source: songs_technical
+    label: Powtórzenia fraz
+    unit: na 100 wersów
+    format: "{:.1f}"
+    dimension: figury
+    status: validated
+    high: najwięcej powtórzeń fraz
+    low: najmniej powtórzeń fraz
+  vulgarity:
+    check: "60 najczęstszych form przejrzanych, usunięte fałszywe („przesłuchuje”)"
+    column: vulgarisms_1000
+    source: songs_surface
+    label: Wulgaryzmy
+    unit: na 1000 słów
+    format: "{:.1f}"
+    dimension: jezyk
+    status: new
+    note: lista rdzeni config/wulgaryzmy.yaml, 60 najczęstszych form przejrzanych
+    high: najwięcej wulgaryzmów
+    low: najmniej wulgaryzmów
+  slang:
+    check: "Słownik Miejski bez słownika ogólnego; zostają pojedyncze wtrącenia"
+    column: slang_1000
+    source: songs_surface
+    label: Slang (Słownik Miejski)
+    unit: na 1000 słów
+    format: "{:.1f}"
+    dimension: jezyk
+    status: new
+    note: Słownik Miejski bez słów ze słownika ogólnego i częstych
+    high: najwięcej slangu
+    low: najmniej slangu
+  coinages:
+    check: "mieszanka: słowotwórstwo, slang, zapożyczenia i literówki – do rozdzielenia"
+    column: out_of_dictionary_1000
+    source: songs_surface
+    label: Słowa spoza słowników
+    unit: na 1000 słów
+    format: "{:.1f}"
+    dimension: jezyk
+    status: new
+    note: słowotwórstwo, slang spoza Miejskiego, zapożyczenia z polską końcówką, ale też literówki
+    high: najwięcej słów spoza słowników (słowotwórstwo, slang)
+    low: najmniej słów spoza słowników
+  rare_words:
+    check: "częstość słów w ogólnej polszczyźnie (wordfreq), mechaniczne"
+    column: rare_words_share
+    source: songs_text
+    label: Rzadkie słowa
+    unit: "% słów"
+    format: pct1
+    dimension: jezyk
+    status: new
+    note: słowa rzadkie w ogólnej polszczyźnie (wordfreq)
+    high: najwięcej rzadkich słów
+    low: najmniej rzadkich słów
+  past_tense:
+    check: "morfologia spaCy (przykłady poprawne)"
+    column: past_share
+    source: songs_text
+    label: Czas przeszły
+    unit: "% czasowników"
+    format: pct
+    dimension: tresc
+    status: new
+    note: morfologia spaCy
+    high: najczęściej opowiada w czasie przeszłym
+    low: najrzadziej używa czasu przeszłego
+  future_tense:
+    check: "morfologia spaCy; „będę robił” i „zrobię” liczone jako przyszły"
+    column: future_share
+    source: songs_text
+    label: Czas przyszły
+    unit: "% czasowników"
+    format: pct
+    dimension: tresc
+    status: new
+    high: najczęściej mówi o przyszłości
+    low: najrzadziej mówi o przyszłości
+  imperatives:
+    check: "morfologia spaCy"
+    column: imperatives_100_verbs
+    source: songs_text
+    label: Tryb rozkazujący
+    unit: na 100 czasowników
+    format: "{:.1f}"
+    dimension: tresc
+    status: new
+    high: najczęściej zwraca się rozkazująco („słuchaj”, „zobacz”)
+    low: najrzadziej używa trybu rozkazującego
+  comparisons:
+    check: "34 z 40 losowych trafień to porównania (85%)"
+    column: comparisons_100_lines
+    source: songs_text
+    label: Porównania („jak”, „niczym”)
+    unit: na 100 wersów
+    format: "{:.1f}"
+    dimension: figury
+    status: new
+    high: najwięcej porównań
+    low: najmniej porównań
+  repetitiveness:
+    check: "stopień kompresji tekstu, mechaniczne"
+    column: compression
+    source: songs_text
+    label: Zwięzłość tekstu
+    unit: "(mniej = więcej powtórzeń)"
+    format: "{:.2f}"
+    dimension: figury
+    status: new
+    high: najmniej powtarzalne teksty
+    low: najbardziej powtarzalne teksty
+  chorus_share:
+    check: "z nagłówków sekcji Geniusa"
+    column: chorus_share
+    source: songs_surface
+    label: Udział refrenu
+    unit: "% wersów utworu"
+    format: pct
+    dimension: budowa
+    status: new
+    note: z nagłówków sekcji Geniusa
+    high: największy udział refrenów
+    low: najmniejszy udział refrenów
+  guests:
+    check: "z metadanych Geniusa"
+    column: guests
+    source: songs_surface
+    label: Goście
+    unit: na utwór
+    format: "{:.2f}"
+    dimension: budowa
+    status: new
+    high: najwięcej gości
+    low: najmniej gości
+  verse_length:
+    check: "z nagłówków sekcji Geniusa"
+    column: lines_per_verse
+    source: songs_surface
+    label: Długość zwrotki
+    unit: wersów
+    format: "{:.1f}"
+    dimension: budowa
+    status: new
+    high: najdłuższe zwrotki
+    low: najkrótsze zwrotki
+  adlibs:
+    check: "fragmenty w nawiasach w tekstach Geniusa; cały utwór, razem z gośćmi"
+    column: adlibs_100_lines
+    source: songs_text
+    label: Ad-liby
+    unit: na 100 wersów
+    format: "{:.1f}"
+    dimension: wykonanie
+    status: new
+    high: najwięcej ad-libów
+    low: najmniej ad-libów

@@ -1,0 +1,163 @@
+# Rhyme groups marked by hand on two verses of Quebonafide, „Avengers”. Reference for rhyme search within a verse.
+# Uncertain places have `uncertain: true`.
+# Group item: [line number in the verse (from 1), "words from the lyrics", "marked fragment" (when only part of a word)].
+# A multi-word fragment („cję przy”, „Jak Bi”): the first part is the end of the first word, the last part the start of
+# the last word.
+# Group name: colour (in Polish) + the vowel sequence that joins it.
+
+quebonafide_avengers:
+  song_id: 125541
+  verses:
+    - section: 0   # verse 1
+      groups:
+        limonka_o-y:
+          - [1, "to przy"]
+          - [1, "skroni"]
+          - [2, "wydrążyłem", "drąży"]
+          - [2, "glory"]
+          - [3, "uzbrojony", "jony"]
+          - [4, "Rolling"]
+        khaki_o:
+          - [1, "Glock"]
+          - [2, "hole"]
+          - [3, "po"]
+          - [3, "Wall"]
+          - [4, "Stones"]
+        niebieski_e-y:
+          - [3, "zęby"]
+          - [4, "satysfakcję przy", "cję przy"]
+          - [5, "przebić"]
+          - [6, "Daredevil", "devil"]
+          - [11, "mainstream"]
+          - [12, "wersy"]
+          - [12, "świecić"]
+        zolty_i:
+          - [5, "Steve"]
+          - [6, "im"]
+        lososiowy_a-e:
+          - [5, "Carell"]
+          - [6, "karę"]
+          - [9, "pancze"]
+          - [10, "palce"]
+          - [12, "Summers"]
+          - [13, "koszmarem", "marem"]
+          - [11, "shotgunem", "gunem"]  # heard as „ganem”
+        karmazyn_e:
+          - [7, "wave"]
+          - [8, "Silver", "ver"]
+        brzoskwinia_o-e:
+          - [7, "Pierdolę", "dolę"]
+          - [7, "modę"]
+          - [8, "lodzie"]
+        zielony_e-e:
+          - [7, "wave'm"]
+          - [8, "wiecznie"]
+          - [8, "Surfer"]
+          - [9, "Avenger", "venger"]
+          - [10, "Jestem"]
+        cyjan_i-a:
+          - [9, "design"]
+          - [10, "lizać"]
+          - [11, "zbliżam"]
+          - [13, "witasz"]
+          - [13, "krzykach"]
+          - [14, "Kapitan", "pitan"]
+          - [14, "Ameryka", "ryka"]
+          - [15, "Klimat"]
+          - [15, "Titanica"]
+        pomarancz_a-i:
+          - [11, "Jak Bishop", "Jak Bi"]
+          - [12, "Za ich"]
+        magenta_o:
+          - [11, "shotgunem", "shot"]
+          - [12, "Scott"]
+          - [13, "koszmarem", "kosz"]
+        jasnozielony_i-e:
+          - [15, "be back"]
+          - [16, "mi się"]
+
+    - section: 4   # verse 3
+      groups:
+        oliwkowy_o-y:
+          - [1, "Robimy", "Robi"]
+          - [2, "Po tych"]
+          - [7, "zwrotki"]
+          - [7, "bloki"]
+          - [8, "dobrym"]
+          - [8, "Loki"]
+        mietowy_e-a:
+          - [1, "spektakl"]
+          - [1, "hercach"]
+          - [2, "wersach"]
+          - [2, "serca"]
+        fiolet_e-i:
+          - [1, "ten team"]
+          - [2, "Ben Grimm"]
+          - [3, "Chcę tylko", "Chcę tyl"]
+          - [3, "wejść"]  # „na” not marked
+          - [3, "szczyt"]
+          - [3, "Bear Grylls"]
+        magenta_o-i:
+          - [4, "Paul Pierce", "Paul Pi"]  # „erce” in grey (e-e), the colours overlap; uncertain
+          - [5, "komiks"]
+        pomarancz_o-e:
+          - [5, "robię"]
+          - [6, "Poślę"]
+          - [7, "pożogę", "żogę"]
+          - [8, "Torze"]
+        limonka_a-u:
+          - [5, "stuffu"]
+          - [6, "wacków"]
+          - [6, "piachu"]
+        szary_e-e:
+          - [5, "wersem"]
+          - [6, "Sandman"]
+          - [7, "obłędem", "błędem"]
+          - [13, "teren"]
+          - [14, "Punisherem", "sherem"]
+          - [14, "player"]
+          - [4, "Pierce", "erce", {uncertain: true}]
+        lososiowy_a-e:
+          - [7, "kładę"]
+          - [8, "laskę"]
+          - [13, "Castle"]
+          - [14, "panczem"]
+          - [15, "power"]
+          - [16, "Avengers", "Aven", {uncertain: true}]
+        bialy_o-a:
+          uncertain: true   # a white highlight is hard to tell from no colour
+          items:
+            - [9, "groma"]
+            - [10, "piona"]
+            - [15, "co na"]
+            - [16, "Ciągła"]
+        cyjan_a-a:
+          - [13, "jak Frank"]
+          - [14, "Pancz za"]
+          - [15, "banda"]
+          - [15, "majkach"]
+          - [16, "walka"]
+          - [16, "kartkach"]
+        karmazyn_o:
+          - [9, "to"]
+          - [10, "Profesor", "Pro"]
+        stalowy_e-o:
+          - [9, "Eljot"]
+          - [10, "Profesor", "fesor"]
+          - [11, "leżą"]
+          - [12, "Ego"]
+        brzoskwinia_i:
+          - [9, "bit"]
+          - [10, "Rip"]
+          - [10, "feat"]
+          - [10, "X"]
+          - [11, "mi"]
+          - [12, "Trip"]
+        zolty_e:
+          - [11, "nie"]
+          - [12, "Ghostwriterem", "rem"]
+          - [15, "wiesz"]
+          - [16, "Avengers", "gers"]
+        khaki_a:
+          - [15, "ma"]
+          - [16, "jak"]

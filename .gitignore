@@ -1,0 +1,22 @@
+# secrets
+.env
+
+# environment
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# lyrics, recordings and intermediate data stay local (copyright)
+data/
+
+# large resources, downloaded or built locally
+resources/*.parquet
+resources/*.csv
+resources/*.json
+!resources/panphon_similarity.csv
+!resources/legal_onsets.json
+resources/fonts/
+
+# pages generated from the data
+site/*.html
