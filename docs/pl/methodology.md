@@ -19,7 +19,8 @@
    z polską końcówką („shotgunem”) czytamy jako hybrydy, a sąsiednie słowa angielskiej frazy idą za nią („I'll be
    back”, „Frank Castle”). Częstości pochodzą z wordfreq.
 3. **Wymowa (IPA).** W kolejności: wyjątki (`config/pronunciation_exceptions.yaml`), polski słownik fonetyczny
-   zbudowany z plWordNetu (1,79 mln form), eSpeak NG. Angielskie głoski sprowadzamy do najbliższych polskich, tak jak
+   (1,79 mln form: lematy z plWordNetu 4.2, formy odmiany z Morfeusza 2, wymowa przekształcona automatycznie na IPA,
+   bez ręcznej weryfikacji), eSpeak NG. Angielskie głoski sprowadzamy do najbliższych polskich, tak jak
    wymawia je polski raper. Skrótowce, których nie da się przeczytać jak słowa, czytamy literami („WKU”), liczby
    zapisujemy słownie.
 4. **Sylaby i akcent.** Granica sylaby według zasady maksymalnego nagłosu; akcent ze słownika albo z eSpeak,

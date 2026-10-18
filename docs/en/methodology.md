@@ -20,7 +20,8 @@
    Polish endings („shotgunem”) are read as hybrids, and neighbouring words in an English phrase follow it („I'll be
    back”, „Frank Castle”). Frequencies come from wordfreq.
 3. **Pronunciation (IPA).** In this order: exceptions (`config/pronunciation_exceptions.yaml`), a Polish phonetic
-   dictionary built from plWordNet (1.79 million forms), eSpeak NG. English phonemes are mapped to the nearest Polish
+   dictionary (1.79 million forms: lemmas from plWordNet 4.2, inflected forms from Morfeusz 2, converted to IPA
+   automatically and not verified by hand), eSpeak NG. English phonemes are mapped to the nearest Polish
    ones, the way a Polish rapper says them. Acronyms that cannot be read as words are spelled out („WKU”), numbers are
    written out.
 4. **Syllables and stress.** Syllable boundaries by maximal onset; stress from the dictionary or eSpeak, otherwise

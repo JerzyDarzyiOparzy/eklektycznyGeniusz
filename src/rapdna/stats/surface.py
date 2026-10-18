@@ -68,7 +68,9 @@ def vocab_classes(words: pd.DataFrame) -> dict[str, set[str]]:
     cap = mid.groupby("low").form.agg(lambda f: f.str[:1].str.isupper().mean())
     proper = set(cap[cap > 0.5].index)
     lang = words.groupby("low").lang.agg(lambda x: x.mode().iloc[0])
-    sl = pd.read_csv(paths.SLANG, usecols=["word"]).word.dropna().str.strip().str.lower()
+    # Słownik Miejski is optional: without it there is no slang class (and slang words count as out of dictionary)
+    sl = (pd.read_csv(paths.SLANG, usecols=["word"]).word.dropna().str.strip().str.lower()
+          if paths.SLANG.exists() else pd.Series(dtype=str))
     slang = set()
     for x in set(sl) & forms - known - proper:
         if is_function_word(x):

@@ -59,6 +59,7 @@ Python 3.12 and [uv](https://docs.astral.sh/uv/). The package and its command ar
 
 ```
 uv sync                      # add --extra topics and/or --extra audio for embeddings and recordings
+uv run rapdna download-resources   # the phonetic dictionary, from the GitHub release
 uv run rapdna info           # checks the resources in resources/
 uv run rapdna fetch          # needs GENIUS_TOKEN in .env
 uv run rapdna process        # lines, words with IPA, rhymes → data/parquet
@@ -72,8 +73,17 @@ uv run rapdna profiles       # → site/dna.html
 uv run pytest
 ```
 
-The phonetic dictionary (plWordNet), the homonym list (Słowosieć) and the Słownik Miejski entries are not part of the
-repository; `rapdna info` lists what is expected in `resources/`. Lyrics, recordings and intermediate data stay local.
+External tools: [espeak-ng](https://github.com/espeak-ng/espeak-ng) for words missing from the dictionary, and ffmpeg
+for recordings. Lyrics, recordings and intermediate data stay local.
+
+## Resources
+
+| File | Status | Source |
+|---|---|---|
+| `resources/phonetic_dict.parquet` | required, [release](https://github.com/JerzyDarzyiOparzy/eklektycznyGeniusz/releases/tag/phonetic-dictionary-v1) | 1.79 million Polish word forms with IPA: lemmas from plWordNet 4.2, inflected forms from Morfeusz 2 (SGJP), converted to IPA automatically; not verified by hand |
+| `resources/panphon_similarity.csv`, `legal_onsets.json` | required, in the repository | computed from PanPhon and the phonetic dictionary |
+| `resources/slownik_miejski.csv` | optional | headwords of miejski.pl (column `word`); without it there is no slang feature |
+| `resources/homonyms_cleaned.json` | optional | plWordNet senses; without it there are no polysemy candidates |
 
 ## License
 

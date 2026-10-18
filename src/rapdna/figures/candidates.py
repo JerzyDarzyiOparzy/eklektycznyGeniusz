@@ -2,8 +2,8 @@
 the page).
 
 - homophones: a word sounds exactly like a word with another lemma („może” / „morze”): candidate for a sound pun;
-- polysemy: the lemma has senses from at least two different domains in Słowosieć (homonyms_cleaned.json) and stands
-  at the line end (punchline position): candidate for a double meaning;
+- polysemy (optional, only when resources/homonyms_cleaned.json is present): the lemma has senses from at least two
+  different domains in Słowosieć and stands at the line end (punchline position): candidate for a double meaning;
 - paronomasia: two nearby content words (≤ 3 apart) that sound similar by Parrish vectors, with different lemmas and
   no rhyme at the end, e.g. „czysto / trzysta”.
 Files: data/candidates/*.csv with an empty `confirmed` column to fill in.
@@ -51,14 +51,18 @@ def build(log=print) -> dict[str, int]:
     h = h.assign(other_words=h.other.map(lambda w: ", ".join(w)[:80]))
     homo = h[["artist", "title", "text", "form", "other_words"]].drop_duplicates(["artist", "text", "form"])
 
-    # polysemy in the punchline position
-    hom = json.loads(paths.HOMONYMS.read_text(encoding="utf-8"))
-    multi = {k.lower(): sorted({s.get("domain", "") for s in v}) for k, v in hom.items()
-             if len({s.get("domain", "") for s in v}) >= 2}
-    last = content.sort_values("w").groupby("line_uid").tail(1)
-    poly = last[last.lemma.isin(multi) & (last.pos == "NOUN")]
-    poly = poly.assign(domains=poly.lemma.map(lambda lem: ", ".join(multi[lem][:4])))
-    poly = poly[["artist", "title", "text", "form", "lemma", "domains"]].drop_duplicates(["artist", "text", "form"])
+    # polysemy in the punchline position (optional resource)
+    poly = None
+    if paths.HOMONYMS.exists():
+        hom = json.loads(paths.HOMONYMS.read_text(encoding="utf-8"))
+        multi = {k.lower(): sorted({s.get("domain", "") for s in v}) for k, v in hom.items()
+                 if len({s.get("domain", "") for s in v}) >= 2}
+        last = content.sort_values("w").groupby("line_uid").tail(1)
+        poly = last[last.lemma.isin(multi) & (last.pos == "NOUN")]
+        poly = poly.assign(domains=poly.lemma.map(lambda lem: ", ".join(multi[lem][:4])))
+        poly = poly[["artist", "title", "text", "form", "lemma", "domains"]].drop_duplicates(["artist", "text", "form"])
+    else:
+        log(f"  {paths.HOMONYMS.name} not found: polysemy candidates skipped")
 
     # paronomasia (Parrish sound vectors)
     vec = soundvec.load()
@@ -80,6 +84,8 @@ def build(log=print) -> dict[str, int]:
 
     out = {}
     for name, df in (("homophones", homo), ("polysemy", poly), ("paronomasia", paro)):
+        if df is None:
+            continue
         df = df.assign(confirmed="", notes="")
         df.to_csv(OUT / f"{name}.csv", sep=";", index=False, encoding="utf-8-sig")
         out[name] = len(df)

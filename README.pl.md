@@ -60,6 +60,7 @@ Python 3.12 i [uv](https://docs.astral.sh/uv/). Pakiet i komenda nazywają się 
 
 ```
 uv sync                      # z --extra topics i/lub --extra audio dla embeddingów i nagrań
+uv run rapdna download-resources   # słownik fonetyczny z wydania na GitHubie
 uv run rapdna info           # sprawdza zasoby w resources/
 uv run rapdna fetch          # wymaga GENIUS_TOKEN w .env
 uv run rapdna process        # wersy, słowa z IPA, rymy → data/parquet
@@ -73,8 +74,17 @@ uv run rapdna profiles       # → site/dna.html
 uv run pytest
 ```
 
-Słownik fonetyczny (plWordNet), lista homonimów (Słowosieć) i hasła Słownika Miejskiego nie są częścią repozytorium;
-`rapdna info` pokazuje, czego oczekuje w `resources/`. Teksty, nagrania i dane pośrednie zostają lokalnie.
+Programy zewnętrzne: [espeak-ng](https://github.com/espeak-ng/espeak-ng) dla słów spoza słownika i ffmpeg dla
+nagrań. Teksty, nagrania i dane pośrednie zostają lokalnie.
+
+## Zasoby
+
+| Plik | Stan | Źródło |
+|---|---|---|
+| `resources/phonetic_dict.parquet` | wymagany, [wydanie](https://github.com/JerzyDarzyiOparzy/eklektycznyGeniusz/releases/tag/phonetic-dictionary-v1) | 1,79 mln polskich form z IPA: lematy z plWordNetu 4.2, formy odmiany z Morfeusza 2 (SGJP), wymowa przekształcona automatycznie na IPA; bez ręcznej weryfikacji |
+| `resources/panphon_similarity.csv`, `legal_onsets.json` | wymagane, w repozytorium | policzone z PanPhon i słownika fonetycznego |
+| `resources/slownik_miejski.csv` | opcjonalny | hasła z miejski.pl (kolumna `word`); bez niego nie ma cechy „slang” |
+| `resources/homonyms_cleaned.json` | opcjonalny | znaczenia z plWordNetu; bez niego nie ma kandydatów na dwuznaczności |
 
 ## Licencja
 

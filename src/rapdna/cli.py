@@ -12,17 +12,41 @@ def _echo_counts(counts: dict) -> None:
 
 @app.command()
 def info():
-    """Show project paths and whether the external resources are in place."""
+    """Show whether the external resources are in place."""
     from rapdna import paths
 
-    for name in ["PANPHON_SIMILARITY", "PHONETIC_DICT", "HOMONYMS", "SLANG"]:
+    for name, note in (("PHONETIC_DICT", "required, `rapdna download-resources`"),
+                       ("PANPHON_SIMILARITY", "required, in the repository"),
+                       ("SLANG", "optional, slang feature"),
+                       ("HOMONYMS", "optional, polysemy candidates")):
         p = getattr(paths, name)
-        typer.echo(f"{name:18} {'OK     ' if p.exists() else 'MISSING'} {p.relative_to(paths.ROOT)}")
+        typer.echo(f"{'OK     ' if p.exists() else 'MISSING'} {p.relative_to(paths.ROOT)}  ({note})")
+
+
+@app.command("download-resources")
+def download_resources():
+    """Download the Polish phonetic dictionary from the GitHub release into resources/."""
+    import io
+    import zipfile
+
+    import requests
+
+    from rapdna import paths
+
+    if paths.PHONETIC_DICT.exists():
+        typer.echo(f"Already in place: {paths.PHONETIC_DICT.relative_to(paths.ROOT)}")
+        return
+    typer.echo(f"Downloading {paths.PHONETIC_DICT_URL}")
+    r = requests.get(paths.PHONETIC_DICT_URL, timeout=300)
+    r.raise_for_status()
+    with zipfile.ZipFile(io.BytesIO(r.content)) as z:
+        paths.PHONETIC_DICT.write_bytes(z.read(paths.PHONETIC_DICT.name))
+    typer.echo(f"Saved {paths.PHONETIC_DICT.relative_to(paths.ROOT)}")
 
 
 @app.command("prepare-resources")
 def prepare_resources():
-    """Convert the phonetic dictionary CSV to Parquet."""
+    """Build resources/phonetic_dict.parquet from a local plwordnet_phonetic_dict.csv (instead of downloading it)."""
     from rapdna import paths
     from rapdna.text.phonetics import build_dictionary_parquet
 
